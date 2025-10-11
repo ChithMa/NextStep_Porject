@@ -1,8 +1,8 @@
 🔍 Brief Summary of the Proposal
 
 Project Name: NextStep – Internship Management System (IMS)
-Pilot: APIIT Colombo (IT students)
-Goal: Digitize and streamline the current manual internship process at APIIT, which currently relies on emails, Excel sheets, and paper-based logbooks.
+Pilot: ABC University (IT students)
+Goal: Digitize and streamline the current manual internship process at ABC, which currently relies on emails, Excel sheets, and paper-based logbooks.
 
 🎯 Problem Identified
 
