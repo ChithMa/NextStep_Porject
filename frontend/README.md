@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-###  NextStep - Internship Management Platform
+# NextStep - Internship Management Platform
 
 A MERN stack project for managing internships, including student registration, dashboards, and document management.
 
@@ -87,17 +87,21 @@ Follow these steps to run the project locally.
 
 ## Step 1: Clone the Repository
 
-Make sure you have Git installed. Check by running:
+**Make sure you have Git installed. Check by running:**
 
+```console
 git --version
+```
 
 
 Clone the repo and open it in VS Code:
 
+```console
 git clone https://github.com/ChithMa/NextStep_Porject.git
 cd NextStep_Porject
 code .
 
+```
 ## Step 2: Set Up Database Connection
 
 Make sure you have a MongoDB Atlas account.
@@ -106,10 +110,12 @@ In the backend folder, create a file named .env.
 
 Add the following environment variables:
 
+```markdown
 MONGO_URI="mongodb+srv://NextStep:nextstep123@cluster0.wa3pqsi.mongodb.net/NextStep?retryWrites=true&w=majority"
 PORT=5000
+```
 
-Then send me your emails to Whatsapp
+**Then send me your emails to Whatsapp**
 
 This connects the backend to your MongoDB database.
 
@@ -117,9 +123,11 @@ This connects the backend to your MongoDB database.
 
 In your terminal:
 
+```console
 cd backend
 npm install
 npm start
+```
 
 
 Make sure to test the backend endpoints with Postman before working on the frontend.
@@ -128,9 +136,11 @@ Make sure to test the backend endpoints with Postman before working on the front
 
 In another terminal:
 
+```console
 cd frontend
 npm install
 npm start
+```
 
 
 Your frontend should now be running, connected to the backend.
@@ -139,43 +149,54 @@ Your frontend should now be running, connected to the backend.
 
 Follow these steps to safely collaborate with your team:
 
-1️⃣ Pull the Latest Updates First
+1️⃣** Pull the Latest Updates First**
 
 Before you start coding:
 
+```console
 git pull origin main
+```
 
 
 This ensures your local branch is up-to-date.
 
-2️⃣ Make Your Changes
+2️⃣ **Make Your Changes**
 
 Edit files, fix bugs, or add new features.
 
-3️⃣ Check Your Changes
+3️⃣ **Check Your Changes**
+
+```console
 git status
 git diff
-
+```
 
 Review what you’ve modified before committing.
 
-4️⃣ Add and Commit Changes
+4️⃣ **Add and Commit Changes**
+
+```console
 git add .
 git commit -m "Describe your changes here"
+```
 
-5️⃣ Pull Again Before Pushing
+5️⃣ **Pull Again Before Pushing**
 
 This prevents merge conflicts if others have pushed updates:
 
+```console
 git pull origin main
+```
 
 
 If no one else has pushed, it will say: Already up to date.
 
 If there are new changes, Git will merge automatically or prompt you to resolve conflicts.
 
-6️⃣ Push Your Changes
+6️⃣ **Push Your Changes**
 
 Finally, push your updates to GitHub:
 
+```console
 git push origin main
+```
