@@ -85,8 +85,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Database
 Create .env file in the backend folder
 copy and paste the following
-MONGO_URI="mongodb+srv://admin:j9rEi1iGHsbe4BGb@cluster0.z1u6tps.mongodb.net/"
-PORT=5000
+
 
 
 ## Step 2
