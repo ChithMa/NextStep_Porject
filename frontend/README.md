@@ -89,19 +89,20 @@ Follow these steps to run the project locally.
 
 **Make sure you have Git installed. Check by running:**
 
-```console
-git --version
-```
+`git --version`
+
 
 
 Clone the repo and open it in VS Code:
 
-```console
+
+```bash
 git clone https://github.com/ChithMa/NextStep_Porject.git
 cd NextStep_Porject
 code .
-
 ```
+
+
 ## Step 2: Set Up Database Connection
 
 Make sure you have a MongoDB Atlas account.
@@ -110,7 +111,7 @@ In the backend folder, create a file named .env.
 
 Add the following environment variables:
 
-```markdown
+```bash
 MONGO_URI="mongodb+srv://NextStep:nextstep123@cluster0.wa3pqsi.mongodb.net/NextStep?retryWrites=true&w=majority"
 PORT=5000
 ```
@@ -123,12 +124,13 @@ This connects the backend to your MongoDB database.
 
 In your terminal:
 
-```console
+
+```bash
 cd backend
 npm install
 npm start
-```
 
+```
 
 Make sure to test the backend endpoints with Postman before working on the frontend.
 
@@ -136,11 +138,13 @@ Make sure to test the backend endpoints with Postman before working on the front
 
 In another terminal:
 
-```console
+
+```bash
 cd frontend
 npm install
 npm start
 ```
+
 
 
 Your frontend should now be running, connected to the backend.
@@ -153,7 +157,7 @@ Follow these steps to safely collaborate with your team:
 
 Before you start coding:
 
-```console
+```bash
 git pull origin main
 ```
 
@@ -166,7 +170,7 @@ Edit files, fix bugs, or add new features.
 
 3️⃣ **Check Your Changes**
 
-```console
+```bash
 git status
 git diff
 ```
@@ -175,7 +179,7 @@ Review what you’ve modified before committing.
 
 4️⃣ **Add and Commit Changes**
 
-```console
+```bash
 git add .
 git commit -m "Describe your changes here"
 ```
@@ -184,7 +188,7 @@ git commit -m "Describe your changes here"
 
 This prevents merge conflicts if others have pushed updates:
 
-```console
+```bash
 git pull origin main
 ```
 
@@ -197,6 +201,6 @@ If there are new changes, Git will merge automatically or prompt you to resolve 
 
 Finally, push your updates to GitHub:
 
-```console
+```bash
 git push origin main
 ```
