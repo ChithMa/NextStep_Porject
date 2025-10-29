@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/login';
+import Login from './components/Login';
 import Step1 from './components/Register/Step1';
 import Step2 from './components/Register/Step2';
 import Step3 from './components/Register/Step3';
