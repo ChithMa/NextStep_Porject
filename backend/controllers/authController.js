@@ -2,7 +2,34 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
+
 const JWT_SECRET = "supersecretkey";
+
+//---- Check Duplicates ----------------
+export const checkDuplicates = async (req, res) => {
+  try {
+    const { studentID, email } = req.body;
+
+    const existingUser = await User.findOne({
+      $or: [{ studentID }, { email }],
+    });
+
+    if (existingUser) {
+      if (existingUser.studentID === studentID) {
+        return res.json({ exists: true, message: "Student ID already registered" });
+      }
+      if (existingUser.email === email) {
+        return res.json({ exists: true, message: "Email already registered" });
+      }
+    }
+
+    return res.json({ exists: false });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 
 // ---------------- Student Registration ----------------
 export const registerStudent = async (req, res) => {
@@ -11,6 +38,7 @@ export const registerStudent = async (req, res) => {
       studentID,
       firstName,
       lastName,
+      contactNumber,
       degreeProgramme,
       level,
       availability, // <-- NEW FIELD
@@ -33,6 +61,7 @@ export const registerStudent = async (req, res) => {
       studentID,
       firstName,
       lastName,
+      contactNumber,
       degreeProgramme,
       level,
       availability, // <-- NEW FIELD
@@ -59,15 +88,15 @@ export const login = async (req, res) => {
   // Hardcoded users
   const hardcodedUsers = [
     {
-      email: "admin@mysystem.com",
-      password: "admin123",
+      email: "tharindu@apiit.lk",
+      password: "tharindu123",
       role: "admin",
       firstName: "Tharindu",
       lastName: "Fernando",
     },
     {
-      email: "coord@mysystem.com",
-      password: "coord123",
+      email: "nadeesha@apiit.lk",
+      password: "nadeesha123",
       role: "coordinator",
       firstName: "Nadeesha",
       lastName: "Perera",
@@ -118,6 +147,7 @@ export const login = async (req, res) => {
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
+      contactNumber: user.contactNumber,
       email: user.email,
       degreeProgramme: user.degreeProgramme,
       level: user.level,

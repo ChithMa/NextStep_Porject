@@ -13,6 +13,11 @@ function Step3() {
       setError("Only PDF files are allowed for CV");
       return;
     }
+    if (file.size > 5 * 1024 * 1024) {
+    setError("CV size must not exceed 5 MB");
+    return;
+  }
+
     setError("");
     setFormData({ ...formData, cv: file });
   };

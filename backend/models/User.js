@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+  contactNumber: {
+  type: String,
+  required: true,
+  match: /^[0-9]{10}$/
+  },
   degreeProgramme: { 
     type: String, 
     enum: ["Software Engineering", "Computer Science", "Cybersecurity", "Artificial Intelligence"], 

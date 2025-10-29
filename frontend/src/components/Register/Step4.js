@@ -16,6 +16,11 @@ function Step4() {
       setError("Only JPG or PNG images are allowed for profile picture");
       return;
     }
+    if (file.size > 2 * 1024 * 1024) {
+    setError("Profile picture size must not exceed 2 MB");
+    return;
+  }
+
     setError("");
     setProfilePic(file);
   };
@@ -32,6 +37,7 @@ function Step4() {
       data.append("studentID", formData.studentID);
       data.append("firstName", formData.firstName);
       data.append("lastName", formData.lastName);
+      data.append("contactNumber", formData.contactNumber);
       data.append("degreeProgramme", formData.degreeProgramme);
       data.append("level", formData.level);
       data.append("email", formData.email);
@@ -47,8 +53,8 @@ function Step4() {
 
       setSuccess("Registration successful! Redirecting to login...");
       setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      window.location.href = "/"; // navigate to login page
+    }, 2000);
     } catch (err) {
       console.error(err);
       setError("Error during registration. Please try again.");

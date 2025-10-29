@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterContext } from "./RegisterContext";
 
 function Step2() {
   const { formData, setFormData } = useContext(RegisterContext);
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const options = ["UI/UX", "PM", "Cyber", "Frontend", "Backend"];
 
@@ -19,6 +20,15 @@ function Step2() {
 
   const handleNext = (e) => {
     e.preventDefault();
+    // ✅ Validation: at least one checkbox must be selected
+    if (formData.internshipPreferences.length === 0) {
+      setError("Please select at least one internship preference.");
+      return;
+    }
+
+    // Clear error and proceed
+    setError("");
+
     navigate("/register/step3");
   };
 
@@ -36,6 +46,8 @@ function Step2() {
             <label>{opt}</label>
           </div>
         ))}
+        {/* Error message */}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Next</button>
       </form>
     </div>

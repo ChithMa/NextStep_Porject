@@ -1,8 +1,10 @@
 import express from "express";
 import multer from "multer";
-import { registerStudent, login } from "../controllers/authController.js";
+import { registerStudent, login, checkDuplicates } from "../controllers/authController.js";
 
 const router = express.Router();
+
+
 
 // Configure Multer storage
 const storage = multer.diskStorage({
@@ -23,5 +25,6 @@ router.post("/register", upload.fields([
 ]), registerStudent);
 
 router.post("/login", login);
+router.post("/check-duplicates", checkDuplicates);
 
 export default router;

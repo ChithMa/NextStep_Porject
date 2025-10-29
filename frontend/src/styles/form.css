@@ -38,3 +38,35 @@ button:hover {
   color: #090b0f;
   cursor: pointer;
 }
+
+/* Error message */
+.error {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* Success message */
+.success {
+  background-color: #e6ffe6;
+  color: #006600;
+  border: 1px solid #006600;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* Optional: fade-in animation */
+.error, .success {
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
