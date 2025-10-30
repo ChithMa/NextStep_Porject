@@ -67,7 +67,10 @@ export const registerStudent = async (req, res) => {
       availability, // <-- NEW FIELD
       email,
       password: hashedPassword,
-      internshipPreferences: internshipPreferences ? internshipPreferences.split(",") : [],
+      internshipPreferences: Array.isArray(internshipPreferences)
+      ? internshipPreferences
+      : [],
+      //internshipPreferences: internshipPreferences ? internshipPreferences.split(",") : [],
       cvUrl: cvFile,
       profilePicUrl: profilePicFile,
       role: "student"

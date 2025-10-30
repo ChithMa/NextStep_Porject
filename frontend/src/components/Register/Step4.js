@@ -43,7 +43,11 @@ function Step4() {
       data.append("email", formData.email);
       data.append("password", formData.password);
       data.append("availability", formData.availability);
-      data.append("internshipPreferences", formData.internshipPreferences.join(","));
+      // ✅ Append internship preferences properly
+     formData.internshipPreferences.forEach((pref) => {
+      data.append("internshipPreferences[]", pref);
+      });
+      //data.append("internshipPreferences", formData.internshipPreferences.join(","));
       data.append("cv", formData.cv);
       data.append("profilePic", profilePic);
 

@@ -13,7 +13,8 @@ export const RegisterProvider = ({ children }) => {
     availability: "",
     email: "",
     password: "",
-    internshipPreferences: [],
+    internshipPreferences: ["", "", ""],
+    //internshipPreferences: [],
     cv: null,
     profilePic: null
   });
