@@ -21,7 +21,6 @@ Follow these steps to run the project locally.
 `git --version`
 
 
-
 Clone the repo and open it in VS Code:
 
 
@@ -31,8 +30,14 @@ cd NextStep_Porject
 code .
 ```
 
+## Step 2: Install Node.Js if not -  Download using the following link
 
-## Step 2: Set Up Database Connection
+**Make sure you have Node.js installed. Check by running:**
+
+`node -v`
+`npm -v`
+
+## Step 3: Set Up Database Connection
 
 Make sure you have a MongoDB Atlas account.
 
@@ -49,7 +54,7 @@ PORT=5000
 
 This connects the backend to your MongoDB database.
 
-## Step 3: Run the Backend
+## Step 4: Run the Backend
 
 In your terminal:
 
@@ -63,7 +68,7 @@ npm start
 
 Make sure to test the backend endpoints with Postman before working on the frontend.
 
-## Step 4: Run the Frontend
+## Step 5: Run the Frontend
 
 In another terminal:
 
