@@ -30,7 +30,7 @@ cd NextStep_Porject
 code .
 ```
 
-## Step 2: Install Node.Js if not -  Download using the following link
+## Step 2: Install Node.Js if not
 
 **Make sure you have Node.js installed. Check by running:**
 
