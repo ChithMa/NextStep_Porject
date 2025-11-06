@@ -1,0 +1,14 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/coordinator-dashboard/layout,_N_T_/coordinator-dashboard/page,_N_T_/coordinator-dashboard"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/coordinator-dashboard/__PAGE__",
+    "/coordinator-dashboard",
+    "/_index"
+  ]
+}

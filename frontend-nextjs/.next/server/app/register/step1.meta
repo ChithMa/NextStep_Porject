@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/register/layout,_N_T_/register/step1/layout,_N_T_/register/step1/page,_N_T_/register/step1"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/register/step1/__PAGE__",
+    "/register/step1",
+    "/register",
+    "/_index"
+  ]
+}

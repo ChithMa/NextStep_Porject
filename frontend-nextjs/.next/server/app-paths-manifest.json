@@ -1,0 +1,13 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin-dashboard/page": "app/admin-dashboard/page.js",
+  "/coordinator-dashboard/page": "app/coordinator-dashboard/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/register/step1/page": "app/register/step1/page.js",
+  "/register/step2/page": "app/register/step2/page.js",
+  "/register/step3/page": "app/register/step3/page.js",
+  "/register/step4/page": "app/register/step4/page.js",
+  "/student-dashboard/page": "app/student-dashboard/page.js"
+}

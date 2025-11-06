@@ -1,0 +1,13 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin-dashboard/page": "/admin-dashboard",
+  "/coordinator-dashboard/page": "/coordinator-dashboard",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/register/step1/page": "/register/step1",
+  "/register/step2/page": "/register/step2",
+  "/register/step3/page": "/register/step3",
+  "/register/step4/page": "/register/step4",
+  "/student-dashboard/page": "/student-dashboard"
+}
