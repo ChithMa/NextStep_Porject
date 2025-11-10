@@ -1,0 +1,18 @@
+# Ignore uploads folder
+uploads/
+
+# Ignore environment/config files
+.env
+
+# Ignore IDE or system files
+.vscode/
+.idea/
+*.log
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore vendor (if you use Composer)
+vendor/
+
