@@ -9,7 +9,7 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
 <div class="bg-white shadow-md px-6 py-3 flex justify-between items-center sticky top-0 z-50">
   <!-- Left Section: Profile + Welcome -->
   <div class="flex items-center gap-4">
-    <img src="../<?= htmlspecialchars($student['profile_picture']) ?>" 
+    <img src="../<?= htmlspecialchars($_SESSION['profile_picture']) ?>" 
          onerror="this.src='../uploads/profile/default.png'" 
          class="w-12 h-12 rounded-full border border-gray-300 object-cover" 
          alt="Profile">
@@ -20,6 +20,8 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
       <p class="text-sm text-gray-500">Student Dashboard</p>
     </div>
   </div>
+  <a href="student_dashboard.php" class="text-blue-600 hover:underline">Home</a>
+  <a href="job_history.php" class="text-blue-600 hover:underline">Job History</a>
   <!-- Right Section -->
   <div class="flex items-center gap-6">
     <!-- Profile Icon -->

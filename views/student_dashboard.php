@@ -7,17 +7,19 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     exit;
 }
 
-// Fetch internships with skills
-$stmt = $pdo->query("
-    SELECT i.id, i.title, i.company_name, i.company_logo,
-           GROUP_CONCAT(s.name SEPARATOR ', ') AS skills
+// Only show internships where the deadline is in the future
+$stmt = $pdo->prepare("
+    SELECT i.*, GROUP_CONCAT(s.name SEPARATOR ', ') AS skills
     FROM internships i
-    LEFT JOIN internship_skills iskill ON i.id = iskill.internship_id
-    LEFT JOIN skills s ON iskill.skill_id = s.id
+    LEFT JOIN internship_skills isr ON i.id = isr.internship_id
+    LEFT JOIN skills s ON isr.skill_id = s.id
+    WHERE i.deadline >= CURDATE()
     GROUP BY i.id
     ORDER BY i.created_at DESC
 ");
+$stmt->execute();
 $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>

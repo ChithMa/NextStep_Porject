@@ -29,6 +29,13 @@ $stmt = $pdo->prepare("
 $stmt->execute([$internship_id]);
 $internship = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Check if the student has already applied
+$student_id = $_SESSION['user_id'];
+$checkStmt = $pdo->prepare("SELECT COUNT(*) FROM applications WHERE student_id = ? AND internship_id = ?");
+$checkStmt->execute([$student_id, $internship_id]);
+$alreadyApplied = $checkStmt->fetchColumn() > 0;
+
+
 if (!$internship) {
     $_SESSION['error'] = "Internship not found.";
     header("Location: student_dashboard.php");
@@ -96,24 +103,36 @@ if (!$internship) {
       <p><strong>Skills Required:</strong> <?= htmlspecialchars($internship['skills'] ?? 'Not specified') ?></p>
     </div>
 
-    <!-- Apply Buttons -->
-    <div class="flex gap-4 items-center">
-      <form action="../controllers/apply_internships.php" method="POST">
-        <input type="hidden" name="internship_id" value="<?= $internship['id'] ?>">
-        <input type="hidden" name="apply_type" value="profile">
-        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold">
-          Apply through Profile
-        </button>
-      </form>
+    
+     <!-- Apply Buttons -->
+<?php if ($alreadyApplied): ?>
+  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-center mt-6">
+    ✅ You have already applied for this internship.
+  </div>
+<?php else: ?>
+  <div class="flex gap-4 items-center mt-6">
+    <!-- Apply via Profile -->
+    <form action="../controllers/apply_internships.php" method="POST">
+      <input type="hidden" name="internship_id" value="<?= $internship['id'] ?>">
+      <input type="hidden" name="apply_type" value="profile">
+      <button type="submit" 
+              class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold">
+        Apply through Profile
+      </button>
+    </form>
 
-      <form action="../controllers/apply_internships.php" method="POST" enctype="multipart/form-data" id="customCVForm">
-        <input type="hidden" name="internship_id" value="<?= $internship['id'] ?>">
-        <input type="hidden" name="apply_type" value="custom_cv">
-        <input type="file" name="custom_cv" accept="application/pdf" required class="hidden" id="customCV">
-        <label for="customCV" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer inline-flex items-center justify-center">
-          Apply using Custom CV
-        </label>
-      </form>
+    <!-- Apply via Custom CV -->
+    <form action="../controllers/apply_internships.php" method="POST" enctype="multipart/form-data" id="customCVForm">
+      <input type="hidden" name="internship_id" value="<?= $internship['id'] ?>">
+      <input type="hidden" name="apply_type" value="custom_cv">
+      <input type="file" name="custom_cv" accept="application/pdf" required class="hidden" id="customCV">
+      <label for="customCV" 
+             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer inline-flex items-center justify-center">
+        Apply using Custom CV
+      </label>
+    </form>
+  </div>
+<?php endif; ?>
     </div>
   </div>
   <script>
