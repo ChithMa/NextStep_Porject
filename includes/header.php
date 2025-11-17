@@ -7,9 +7,10 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- Navbar -->
 <div class="bg-white shadow-md px-6 py-3 flex justify-between items-center sticky top-0 z-50">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <!-- Left Section: Profile + Welcome -->
   <div class="flex items-center gap-4">
-    <img src="../<?= htmlspecialchars($_SESSION['profile_picture']) ?>" 
+    <img src="../<?= htmlspecialchars($student['profile_picture']) ?>" 
          onerror="this.src='../uploads/profile/default.png'" 
          class="w-12 h-12 rounded-full border border-gray-300 object-cover" 
          alt="Profile">
@@ -22,6 +23,7 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
   </div>
   <a href="student_dashboard.php" class="text-blue-600 hover:underline">Home</a>
   <a href="job_history.php" class="text-blue-600 hover:underline">Job History</a>
+  <a href="industry_placement.php" class="text-blue-600 hover:underline">Placement</a>
   <!-- Right Section -->
   <div class="flex items-center gap-6">
     <!-- Profile Icon -->

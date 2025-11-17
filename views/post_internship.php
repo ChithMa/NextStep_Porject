@@ -45,7 +45,7 @@ $skills = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           <div>
             <label class="block text-gray-700 font-medium mb-1">Title</label>
-            <input type="text" name="title" required
+            <input type="text" name="title" 
                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
           </div>
 

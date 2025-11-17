@@ -11,6 +11,8 @@ $coord = $stmt->fetch(PDO::FETCH_ASSOC);
         <h2 class="text-lg text-white font-semibold">Welcome, <?= htmlspecialchars($coord['first_name']." ".$coord["last_name"] ) ?></h2>
         <p class="text-sm text-white">coordinator Dashboard</p>
       </div>
+      <a href="coordinator_dashboard.php" class="text-blue-600 hover:underline">Home</a>
+      <a href="posting_history.php" class="text-blue-600 hover:underline">Posting History</a>
     </div>
     <a href="../logout.php" class="flex items-center gap-2 text-red-500 font-semibold hover:underline">
       <i class="fa-solid fa-right-from-bracket text-2xl"></i>

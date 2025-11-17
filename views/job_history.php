@@ -65,7 +65,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="flex items-center gap-5">
               <div class="w-16 h-16 flex-shrink-0">
                 <img src="../<?= htmlspecialchars($app['company_logo']) ?>" 
-                     onerror="this.src='../uploads/logo/default_logo.png'" 
+                     onerror="this.src='../uploads/profile/default.png'" 
                      class="w-16 h-16 object-cover rounded-xl border border-gray-300 bg-white" 
                      alt="Logo">
               </div>
