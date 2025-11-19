@@ -8,6 +8,20 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'coordinator') {
     exit;
 }
 
+// SUMMARY COUNTS
+$totalUsers = $pdo->query("SELECT COUNT(*) FROM students")->fetchColumn();
+
+$activeInternships = $pdo->query("
+    SELECT COUNT(*) 
+    FROM internships 
+    WHERE deadline >= CURDATE()
+")->fetchColumn();
+
+$studentsInInternships = $pdo->query("
+    SELECT COUNT(*) 
+    FROM industry_placements
+")->fetchColumn();
+
 // Fetch active internships (deadline >= today)
 $stmt = $pdo->prepare("
     SELECT i.*, 
@@ -50,7 +64,7 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="bg-white shadow-md rounded-xl p-6 flex items-center justify-between">
       <div>
         <h2 class="text-gray-500 text-sm uppercase">Total Users</h2>
-        <p class="text-3xl font-bold text-gray-800 mt-2">120</p>
+        <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $totalUsers?></p>
       </div>
       <div class="bg-blue-100 p-4 rounded-full">
         <i class="fa-solid fa-users text-blue-600 text-2xl"></i>
@@ -59,8 +73,8 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="bg-white shadow-md rounded-xl p-6 flex items-center justify-between">
       <div>
-        <h2 class="text-gray-500 text-sm uppercase">Internships Posted</h2>
-        <p class="text-3xl font-bold text-gray-800 mt-2">45</p>
+        <h2 class="text-gray-500 text-sm uppercase">Active postings</h2>
+        <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $activeInternships?></p>
       </div>
       <div class="bg-green-100 p-4 rounded-full">
         <i class="fa-solid fa-briefcase text-green-600 text-2xl"></i>
@@ -70,7 +84,7 @@ $internships = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="bg-white shadow-md rounded-xl p-6 flex items-center justify-between">
       <div>
         <h2 class="text-gray-500 text-sm uppercase">Students in Internships</h2>
-        <p class="text-3xl font-bold text-gray-800 mt-2">32</p>
+        <p class="text-3xl font-bold text-gray-800 mt-2"><?php echo $studentsInInternships?></p>
       </div>
       <div class="bg-yellow-100 p-4 rounded-full">
         <i class="fa-solid fa-user-graduate text-yellow-600 text-2xl"></i>

@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl">
     <h2 class="text-2xl font-semibold text-center text-blue-600 mb-6">Login</h2>
 
     <?php

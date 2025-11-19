@@ -255,7 +255,7 @@ try {
     $pdo->commit();
 
     $_SESSION['success'] = "Registration completed successfully. You may now log in.";
-    header('Location: ../views/register.php');
+    header('Location: ../login.php');
     exit;
 
 } catch (Exception $e) {
