@@ -150,7 +150,7 @@ $already_submitted = $result ? true : false;
 
                 <!-- ================== ORGANIZATION SECTION ================== -->
                 <div class="border rounded-lg p-6 shadow-sm bg-gray-50">
-                    <h2 class="text-xl font-semibold mb-4 text-green-700">Organization Details</h2>
+                    <h2 class="text-xl font-semibold mb-4 text-green-700">Internship Details</h2>
 
                     <div class="space-y-4">
 
