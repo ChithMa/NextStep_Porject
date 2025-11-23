@@ -17,6 +17,11 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
 $contact = trim($_POST['contact_number'] ?? $student['contact_number']);
 $availability = $_POST['availability'] ?? $student['availability'];
 
+// Get preferences
+$preference1 = trim($_POST['preference1'] ?? '');
+$preference2 = trim($_POST['preference2'] ?? '');
+$preference3 = trim($_POST['preference3'] ?? '');
+
 $cv_path = $student['cv'];
 $profile_path = $student['profile_picture'];
 
@@ -33,13 +38,35 @@ if (!preg_match('/^\d{10}$/', $contact)) {
     exit;
 }
 
+// Validate preferences
+$preferences = array_filter([$preference1, $preference2, $preference3], function($v) {
+    return $v !== '';
+});
+
+// Check for duplicates
+if (count($preferences) !== count(array_unique($preferences))) {
+    $_SESSION['error'] = "Each preference must be unique. Duplicate selections are not allowed.";
+    header("Location: ../views/profile.php");
+    exit;
+}
+
+// Validate preference values (only allow valid options)
+$validPreferences = ['Software Development', 'UI/UX Design', 'Data Analysis', 'Cyber Security'];
+foreach ($preferences as $pref) {
+    if (!in_array($pref, $validPreferences)) {
+        $_SESSION['error'] = "Invalid preference selected. Please choose from the available options.";
+        header("Location: ../views/profile.php");
+        exit;
+    }
+}
+
 // Handle CV upload
 if (!empty($_FILES['cv']['name'])) {
     $cvFile = $_FILES['cv'];
     $ext = pathinfo($cvFile['name'], PATHINFO_EXTENSION);
     if ($ext !== 'pdf') {
         $_SESSION['error'] = "Only PDF files allowed for CV.";
-        header("Location: profile.php");
+        header("Location: ../views/profile.php");
         exit;
     }
 
@@ -60,7 +87,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
     $allowed = ['jpg', 'jpeg', 'png', 'gif'];
     if (!in_array(strtolower($ext), $allowed)) {
         $_SESSION['error'] = "Invalid image format for profile picture.";
-        header("Location: profile.php");
+        header("Location: ../views/profile.php");
         exit;
     }
 
@@ -74,14 +101,42 @@ if (!empty($_FILES['profile_picture']['name'])) {
     $profile_path = $profile_newname;
 }
 
-// Update DB
-$update = $pdo->prepare("
-    UPDATE students 
-    SET contact_number = ?, availability = ?, cv = ?, profile_picture = ? 
-    WHERE user_id = ?
-");
-$update->execute([$contact, $availability, $cv_path, $profile_path, $user_id]);
-
-$_SESSION['success'] = "Profile updated successfully!";
-header("Location: ../views/profile.php");
-exit;
+// Update DB - use transaction for data consistency
+try {
+    $pdo->beginTransaction();
+    
+    // Update student profile
+    $update = $pdo->prepare("
+        UPDATE students 
+        SET contact_number = ?, availability = ?, cv = ?, profile_picture = ? 
+        WHERE user_id = ?
+    ");
+    $update->execute([$contact, $availability, $cv_path, $profile_path, $user_id]);
+    
+    // Get student ID
+    $student_id = $student['id'];
+    
+    // Delete existing preferences
+    $deletePrefs = $pdo->prepare("DELETE FROM preferences WHERE student_id = ?");
+    $deletePrefs->execute([$student_id]);
+    
+    // Insert new preferences
+    if (!empty($preferences)) {
+        $insertPref = $pdo->prepare("INSERT INTO preferences (student_id, preference_name) VALUES (?, ?)");
+        foreach ($preferences as $pref) {
+            $insertPref->execute([$student_id, $pref]);
+        }
+    }
+    
+    $pdo->commit();
+    
+    $_SESSION['success'] = "Profile updated successfully!";
+    header("Location: ../views/profile.php");
+    exit;
+    
+} catch (Exception $e) {
+    $pdo->rollBack();
+    $_SESSION['error'] = "An error occurred while updating your profile. Please try again.";
+    header("Location: ../views/profile.php");
+    exit;
+}

@@ -57,9 +57,9 @@
         <select name="degree" required
                 class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-400">
           <option value="">Select Degree</option>
-          <option value="BSc in Software Engineering">BSc in Software Engineering</option>
-          <option value="BSc in Computer Science">BSc in Computer Science</option>
-          <option value="BSc in Information Systems">BSc in Information Systems</option>
+          <option value="BEng Software Engineering">BEng in Software Engineering</option>
+          <option value="BSc Computer Science">BSc Computer Science</option>
+          <option value="BSc Cybersecurity">BSc CyberSecurity</option>
         </select>
       </div>
 
@@ -69,7 +69,6 @@
         <select name="degree_level" required
                 class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-400">
           <option value="">Select Degree Level</option>
-          <option value="Level 4">Level 4</option>
           <option value="Level 5">Level 5</option>
           <option value="Level 6">Level 6</option>
         </select>

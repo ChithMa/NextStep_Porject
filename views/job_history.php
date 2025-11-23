@@ -8,12 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     exit;
 }
 
-$student_id = $_SESSION['user_id'] ?? null;
-if (!$student_id) {
-    $_SESSION['error'] = "Student information not found.";
-    header("Location: student_dashboard.php");
-    exit;
-}
+$student_id = $_SESSION['user_id'];
 
 // Fetch all applied internships (including expired)
 $stmt = $pdo->prepare("
@@ -35,8 +30,10 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen font-sans">
   <div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-8">
+
+    <!-- Page Title -->
     <h2 class="text-3xl font-bold text-blue-700 mb-8 flex items-center gap-3">
       <i class="fa-solid fa-briefcase text-blue-600"></i>
       My Internship Applications
@@ -63,23 +60,32 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($applications as $app): ?>
           <div class="bg-gray-50 hover:bg-gray-100 border border-gray-200 p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-between">
             <div class="flex items-center gap-5">
+              
+              <!-- Company Logo -->
               <div class="w-16 h-16 flex-shrink-0">
-                <img src="../<?= htmlspecialchars($app['company_logo']) ?>" 
-                     onerror="this.src='../uploads/profile/default.png'" 
-                     class="w-16 h-16 object-cover rounded-xl border border-gray-300 bg-white" 
-                     alt="Logo">
+                <?php if (!empty($app['company_logo']) && file_exists("../".$app['company_logo'])): ?>
+                  <img src="../<?= htmlspecialchars($app['company_logo']) ?>" 
+                       class="w-16 h-16 object-cover rounded-xl border border-gray-300 bg-white" 
+                       alt="Company Logo">
+                <?php else: ?>
+                  <div class="w-16 h-16 flex items-center justify-center bg-gray-200 rounded-xl border border-gray-300">
+                    <i class="fa-solid fa-building text-gray-400 text-2xl"></i>
+                  </div>
+                <?php endif; ?>
               </div>
 
+              <!-- Internship Details -->
               <div>
                 <h3 class="text-lg font-semibold text-gray-800"><?= htmlspecialchars($app['title']) ?></h3>
                 <p class="text-gray-500"><?= htmlspecialchars($app['company_name']) ?></p>
                 <p class="text-sm text-gray-400 mt-1">
                   <i class="fa-regular fa-calendar-days mr-1 text-blue-500"></i>
-                  Applied on <?= date('F j, Y', strtotime($app['applied_at'])) ?>
+                  Applied on <?= !empty($app['applied_at']) ? date('F j, Y', strtotime($app['applied_at'])) : 'N/A' ?>
                 </p>
               </div>
             </div>
 
+            <!-- View Details Button -->
             <a href="internship_details.php?id=<?= $app['internship_id'] ?>" 
                class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
               <i class="fa-solid fa-eye"></i>
@@ -89,6 +95,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
       </div>
     <?php else: ?>
+      <!-- No Applications Message -->
       <div class="text-center py-12">
         <i class="fa-regular fa-folder-open text-gray-400 text-6xl mb-4"></i>
         <p class="text-gray-500 text-lg">You haven’t applied for any internships yet.</p>
@@ -101,4 +108,3 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
 </body>
 </html>
-

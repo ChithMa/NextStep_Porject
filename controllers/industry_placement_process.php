@@ -18,7 +18,22 @@ function clean($value)
 // -------------------------
 // 1️⃣ COLLECT + CLEAN DATA
 // -------------------------
-$student_id             = $_SESSION['user_id'];  // logged-in student ID
+// Get users.id from session
+$user_id = $_SESSION['user_id'];
+
+// Get the actual students.id (not users.id) for industry_placements table
+// The industry_placements.student_id references students.id, not users.id
+$stmt = $pdo->prepare("SELECT id FROM students WHERE user_id = ?");
+$stmt->execute([$user_id]);
+$student_record = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$student_record) {
+    $_SESSION['error'] = "Student record not found.";
+    header("Location: ../views/industry_placement.php");
+    exit;
+}
+
+$student_id = $student_record['id'];  // This is students.id (correct for foreign key)
 
 $full_name              = clean($_POST['full_name'] ?? '');
 $address                = clean($_POST['address'] ?? '');
