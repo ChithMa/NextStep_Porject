@@ -21,18 +21,24 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
       <p class="text-sm text-gray-500">Student Dashboard</p>
     </div>
   </div>
-  <a href="student_dashboard.php" class="text-blue-600 hover:underline">Home</a>
-  <a href="job_history.php" class="text-blue-600 hover:underline">Job History</a>
-  <a href="industry_placement.php" class="text-blue-600 hover:underline">Placement</a>
-  <!-- Right Section -->
+
+  <!-- Center Section: Navigation Links -->
+  <div class="flex items-center gap-6">
+    <a href="student_dashboard.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Home</a>
+    <a href="job_history.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Application History</a>
+    <a href="industry_placement.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Apply Placement</a>
+     <!-- Add more form links here if needed -->
+  </div>
+
+  <!-- Right Section: Profile & Logout -->
   <div class="flex items-center gap-6">
     <!-- Profile Icon -->
-    <a href="../views/profile.php" class="flex items-center gap-2 text-gray-700 hover:text-blue-600 font-medium">
+    <a href="../views/profile.php" class="flex items-center gap-2 text-gray-700 hover:text-blue-600 font-medium transition">
       <i class="fa-solid fa-user text-xl"></i>
       <span>Profile</span>
     </a>
     <!-- Logout Button -->
-    <a href="../logout.php" class="flex items-center gap-2 text-red-500 font-semibold hover:underline">
+    <a href="../logout.php" class="flex items-center gap-2 text-red-500 font-semibold hover:underline transition">
       <i class="fa-solid fa-right-from-bracket text-lg"></i>
       Logout
     </a>

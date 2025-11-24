@@ -1,0 +1,24 @@
+{
+  "name": "nxtstep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChithMa/NextStep_Porject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChithMa/NextStep_Porject/issues"
+  },
+  "homepage": "https://github.com/ChithMa/NextStep_Porject#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}
