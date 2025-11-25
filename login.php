@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="Welcome to NextStep" content="Your pathway to career success">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" description="Login Page">
   <title>Login</title>
   <link href="./src/output.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-cover bg-center bg-fixed bg-no-repeat" style="background-image: url('assets/images/loginPic.jpg');">
 
