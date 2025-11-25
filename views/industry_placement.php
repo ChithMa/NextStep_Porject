@@ -202,7 +202,7 @@ if ($already_submitted) {
                                required
                                value="<?= htmlspecialchars($batch_code) ?>"
                                <?= $already_submitted ? 'readonly' : '' ?>
-                               placeholder="e.g., 2024-SE-01"
+                               placeholder="e.g., COM2463"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition <?= $already_submitted ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' ?>">
                     </div>
 
@@ -424,13 +424,5 @@ if ($already_submitted) {
 
     </div>
 </div>
-
-<!-- Footer -->
-<div class="bg-white border-t border-gray-200 py-4 mt-8">
-    <p class="text-center text-gray-600 text-sm">
-        &copy; <?php echo date('Y'); ?> All Rights Reserved
-    </p>
-</div>
-
 </body>
 </html>
