@@ -87,8 +87,8 @@ Student Login
 
 To log in as a Student, you must first register using the registration form.
 
-# On the login page, click the “Register here” link
-# Fill the details along with your CV and create your student account
-# After registration, you can log in using your new credentials
+On the login page, click the “Register here” link.
+Fill the details along with your CV and create your student account.
+After registration, you can log in using your new credentials.
 
 
