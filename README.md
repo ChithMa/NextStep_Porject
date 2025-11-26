@@ -37,36 +37,47 @@ In VS Code terminal, run:
 npm install
 npm run dev
 ```
-
 This will build Tailwind CSS properly.
 
-### 4️⃣ Step 4 – Start XAMPP Services
+### Step 4 - Enable ZIP extension (To download zip files)
+
+Go to 
+`C:\xampp\php\php.ini`
+
+Search for:
+`;extension=zip`
+
+Remove the semicolon (;) to enable it:
+`extension=zip`
+
+
+### 4️⃣ Step 5 – Start XAMPP Services
 
 Open the XAMPP Control Panel. Click Start for:
 
 - Apache
 - MySQL
 
-### 5️⃣ Step 5 – Open phpMyAdmin
+### 5️⃣ Step 6 – Open phpMyAdmin
 
 In XAMPP Control Panel, click Admin next to MySQL.
 This will open phpMyAdmin in your browser.
 
-### 6️⃣ Step 6 – Create the Database
+### 6️⃣ Step 7 – Create the Database
 
 In phpMyAdmin:
 
 1. Click New
 2. Create a database named `nextstep` (all lowercase)
 
-### 7️⃣ Step 7 – Import the SQL File
+### 7️⃣ Step 8 – Import the SQL File
 
 1. Select the `nextstep` database
 2. Go to Import
 3. Choose the `.sql` file included in the project
 4. Click Go
 
-### 8️⃣ Step 8 – Run the Project
+### 8️⃣ Step 9 – Run the Project
 
 Use this format in your browser:
 
