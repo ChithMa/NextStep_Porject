@@ -141,7 +141,7 @@ if ($already_submitted) {
         <form action="../controllers/industry_placement_process.php" method="POST" <?= $already_submitted ? 'onsubmit="return false;"' : '' ?>>
 
             <!-- ================== STUDENT SECTION (FULL WIDTH TOP) ================== -->
-            <div class="border border-gray-300 rounded-lg p-6 sm:p-8 shadow-sm bg-blue-50 mb-6 sm:mb-8">
+            <div class="border border-gray-300 rounded-lg p-6 sm:p-8 shadow-sm bg-white mb-6 sm:mb-8">
                 <h2 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-700 flex items-center">
                     <span class="w-8 h-8 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">1</span>
                     Student Details
