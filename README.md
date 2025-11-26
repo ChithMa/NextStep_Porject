@@ -77,11 +77,7 @@ Use this format in your browser:
 ## 🎓 Test Credentials
 
 ### Coordinator Login
-
-Use the following credentials to log in as the Coordinator:
-
-- **Email**:    nadeesha@apiit.lk
-- **Password**: coord123
+Check the login-instructions.txt file for coordinator credentials
 
 ### Student Login
 
