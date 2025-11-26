@@ -76,10 +76,19 @@ Use this format in your browser:
 
 ## 🎓 Test Credentials
 
-### Student Login
-- **Email:** alice@gmail.com
-- **Password:** 123456
+Coordinator Login
 
-### Coordinator Login
-- **Email:** nadeesha@apiit.lk
-- **Password:** coord123
+Use the following credentials to log in as the Coordinator:
+
+**Email**:    nadeesha@apiit.lk
+**Password**: coord123
+
+Student Login
+
+To log in as a Student, you must first register using the registration form.
+
+➡ On the login page, click the “Register here” link
+➡ Fill the details along with your CV and create your student account
+➡ After registration, you can log in using your new credentials
+
+
