@@ -225,7 +225,7 @@ if ($already_submitted) {
                                required
                                value="<?= htmlspecialchars($emergency_contact) ?>"
                                <?= $already_submitted ? 'readonly' : '' ?>
-                               placeholder="+94 XX XXX XXXX"
+                               placeholder="XXXXXXXXX"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition <?= $already_submitted ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' ?>">
                     </div>
 
@@ -310,7 +310,7 @@ if ($already_submitted) {
                                required
                                value="<?= htmlspecialchars($company_phone) ?>"
                                <?= $already_submitted ? 'readonly' : '' ?>
-                               placeholder="+94 XX XXX XXXX"
+                               placeholder="XXXXXXXXX"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition <?= $already_submitted ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' ?>">
                     </div>
 
@@ -370,7 +370,7 @@ if ($already_submitted) {
                                required
                                value="<?= htmlspecialchars($mentor_phone) ?>"
                                <?= $already_submitted ? 'readonly' : '' ?>
-                               placeholder="+94 XX XXX XXXX"
+                               placeholder="XXXXXXXXX"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition <?= $already_submitted ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' ?>">
                     </div>
 

@@ -36,7 +36,7 @@ $preferenceOptions = ['Software Development', 'UI/UX Design', 'Data Analysis', '
 
     <!-- LEFT SECTION: Profile Info -->
     <div class="bg-blue-600 text-white md:w-1/3 p-8 flex flex-col items-center">
-      <img src="../<?= htmlspecialchars($student['profile_picture'] ?? 'uploads/profile/default.png') ?>" 
+      <img id="profile-preview" src="../<?= htmlspecialchars($student['profile_picture'] ?? 'uploads/profile/default.png') ?>" 
            onerror="this.src='../uploads/profile/default.png'"
            class="w-32 h-32 rounded-full border-4 border-white object-cover mb-4">
 
@@ -134,7 +134,7 @@ $preferenceOptions = ['Software Development', 'UI/UX Design', 'Data Analysis', '
         <!-- Profile Picture Upload -->
         <div>
           <label class="block text-gray-700 font-semibold mb-1">Change Profile Picture</label>
-          <input type="file" name="profile_picture" accept="image/*" class="w-full border-gray-300 rounded-md p-2">
+          <input type="file" id="profile-upload" name="profile_picture" accept="image/*" class="w-full border-gray-300 rounded-md p-2">
         </div>
 
         <!-- Career Preferences -->
@@ -256,6 +256,23 @@ $preferenceOptions = ['Software Development', 'UI/UX Design', 'Data Analysis', '
         return false;
       }
     });
+
+    // Profile Picture Preview
+    const profileUpload = document.getElementById('profile-upload');
+    const profilePreview = document.getElementById('profile-preview');
+
+    if (profileUpload && profilePreview) {
+      profileUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            profilePreview.src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   </script>
 
 </body>

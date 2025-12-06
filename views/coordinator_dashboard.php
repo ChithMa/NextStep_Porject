@@ -261,5 +261,28 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </body>
+<!-- SweetAlert2 for Notifications -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    <?php if (!empty($expiringInternships) && !isset($_SESSION['notification_shown'])): ?>
+        <?php $_SESSION['notification_shown'] = true; ?>
+        document.addEventListener('DOMContentLoaded', function() {
+            let expiringList = <?php echo json_encode($expiringInternships); ?>;
+            let listHtml = '<ul style="text-align: left; margin-top: 10px;">';
+            expiringList.forEach(item => {
+                listHtml += `<li style="margin-bottom: 5px;">• <strong>${item.title}</strong><br><span style="font-size: 0.9em; color: #666;">Expires: ${item.deadline}</span></li>`;
+            });
+            listHtml += '</ul>';
+            
+            Swal.fire({
+                title: '⚠️ Internship Expiration Alert',
+                html: `The following internships are expiring within 2 days:<br>${listHtml}`,
+                icon: 'warning',
+                confirmButtonText: 'Got it',
+                confirmButtonColor: '#2563eb'
+            });
+        });
+    <?php endif; ?>
+</script>
 </html>
 

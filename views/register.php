@@ -168,7 +168,7 @@
                      id="email" 
                      name="email" 
                      required 
-                     placeholder="your.email@example.com"
+                     placeholder="youremail@example.com"
                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
             </div>
 
@@ -181,7 +181,7 @@
                      required 
                      placeholder="Create a strong password"
                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
-              <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters long</p>
+              <p class="mt-1 text-xs text-gray-500">Must be at least 6 characters long</p>
             </div>
           </div>
         </div>
