@@ -28,6 +28,8 @@ $student = $stmt->fetch(PDO::FETCH_ASSOC);
     <a href="job_history.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Application History</a>
     <a href="industry_placement.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Apply Placement</a>
      <!-- Add more form links here if needed -->
+     <a href="logbook.php" class="text-gray-700 hover:text-blue-600 font-medium transition">Logbook</a>
+
   </div>
 
   <!-- Right Section: Profile & Logout -->
