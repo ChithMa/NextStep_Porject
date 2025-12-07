@@ -172,22 +172,26 @@ if ($has_placement) {
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Activities Carried Out</label>
                         <textarea name="activities" id="inp_activities" rows="3" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border p-2"></textarea>
+                        <p id="err_activities" class="text-red-500 text-xs mt-1 hidden">Please enter the activities carried out.</p>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Technical Skills</label>
                             <textarea name="technical_skills" id="inp_technical" rows="2" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border p-2"></textarea>
+                            <p id="err_technical" class="text-red-500 text-xs mt-1 hidden">Please describe technical skills developed.</p>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Soft Skills</label>
                             <textarea name="soft_skills" id="inp_soft" rows="2" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border p-2"></textarea>
+                            <p id="err_soft" class="text-red-500 text-xs mt-1 hidden">Please describe soft skills developed.</p>
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Trainings Received/Attended</label>
                         <textarea name="trainings" id="inp_trainings" rows="2" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border p-2"></textarea>
+                        <p id="err_trainings" class="text-red-500 text-xs mt-1 hidden">Please describe Tranings Received / Atteneted.</p>
                     </div>
                 </div>
 
@@ -338,6 +342,16 @@ if ($has_placement) {
         document.getElementById('modalMonth').value = currentMonth;
         document.getElementById('modalWeek').value = week;
 
+        // Reset errors
+        document.getElementById('err_activities').classList.add('hidden');
+        document.getElementById('err_technical').classList.add('hidden');
+        document.getElementById('err_soft').classList.add('hidden');
+        document.getElementById('err_trainings').classList.add('hidden');
+        ['inp_activities', 'inp_technical', 'inp_soft', 'inp_trainings'].forEach(id => {
+            document.getElementById(id).classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+            document.getElementById(id).classList.add('border-gray-300');
+        });
+
         // Populate fields
         const entry = currentData[week];
         document.getElementById('inp_activities').value = entry ? entry.activities : '';
@@ -354,6 +368,46 @@ if ($has_placement) {
 
     document.getElementById('logEntryForm').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Validation Results
+        let isValid = true;
+
+        // Helper to Toggle Error
+        function toggleError(inputId, errorId, show) {
+            const input = document.getElementById(inputId);
+            const err = document.getElementById(errorId);
+            if(show) {
+                err.classList.remove('hidden');
+                input.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+                input.classList.remove('border-gray-300');
+            } else {
+                err.classList.add('hidden');
+                input.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+                input.classList.add('border-gray-300');
+            }
+        }
+
+        // Check fields
+        const activities = document.getElementById('inp_activities').value.trim();
+        const tech = document.getElementById('inp_technical').value.trim();
+        const soft = document.getElementById('inp_soft').value.trim();
+        const trainings = document.getElementById('inp_trainings').value.trim();
+
+
+        if(!activities) { toggleError('inp_activities', 'err_activities', true); isValid = false; }
+        else { toggleError('inp_activities', 'err_activities', false); }
+
+        if(!tech) { toggleError('inp_technical', 'err_technical', true); isValid = false; }
+        else { toggleError('inp_technical', 'err_technical', false); }
+
+        if(!soft) { toggleError('inp_soft', 'err_soft', true); isValid = false; }
+        else { toggleError('inp_soft', 'err_soft', false); }
+
+        if(!trainings) { toggleError('inp_trainings', 'err_trainings', true); isValid = false; }
+        else { toggleError('inp_trainings', 'err_trainings', false); }
+
+        if (!isValid) return;
+
         const formData = new FormData(this);
         formData.append('action', 'save_week');
 
