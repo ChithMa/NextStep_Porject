@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../config/db.php";
+require_once "../helper/phpMailer.php";
 
 header('Content-Type: application/json');
 
@@ -175,6 +176,11 @@ try {
         );
 
         if ($emailSent) {
+            // Add Notification for Student
+            $msg = "You successfully submitted your logbook for Month $month to your mentor ($placement[mentor_name]).";
+            $stmtNotify = $pdo->prepare("INSERT INTO notifications (user_id, message) VALUES (?, ?)");
+            $stmtNotify->execute([$user_id, $msg]);
+
             echo json_encode(['success' => true, 'message' => 'Submitted successfully! Email sent to mentor.']);
         } else {
             echo json_encode(['success' => true, 'message' => 'Submitted, but failed to send email. Ensure API Key is configured.']);
@@ -187,7 +193,7 @@ try {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
-
+/*
 // -------------------------------------------------------------
 // HELPER: Send Email via PHPMailer
 // -------------------------------------------------------------
@@ -241,3 +247,4 @@ function sendEmailPHPMailer($toEmail, $toName, $subject, $htmlContent) {
         return false;
     }
 }
+*/

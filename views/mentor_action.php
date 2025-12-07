@@ -21,6 +21,21 @@ if ($action === 'approve' || $action === 'reject') {
     $stmt = $pdo->prepare("UPDATE logbook_monthly_reviews SET status = ?, mentor_action_date = CURDATE(), approval_token = NULL WHERE id = ?");
     $stmt->execute([$newStatus, $review['id']]);
     
+    // NOTIFICATION LOGIC: Notify Student
+    // 1. Get Student User ID
+    $stmtUser = $pdo->prepare("SELECT user_id FROM students WHERE id = ?");
+    $stmtUser->execute([$review['student_id']]);
+    $studentUser = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+    if ($studentUser) {
+        $msg = ($newStatus === 'approved') 
+            ? "Your logbook for Month {$review['month_number']} has been APPROVED by your mentor." 
+            : "Your logbook for Month {$review['month_number']} was REJECTED by your mentor. Please check comments and resubmit.";
+        
+        $stmtNotify = $pdo->prepare("INSERT INTO notifications (user_id, message) VALUES (?, ?)");
+        $stmtNotify->execute([$studentUser['user_id'], $msg]);
+    }
+
     // Show Success Page
     ?>
     <!DOCTYPE html>
